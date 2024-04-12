@@ -6,7 +6,7 @@ import LoginPage from "../pages/LoginPage";
 
 const AppRouter = () => {
 
-    const isAuthenticated = true;
+    const isAuthenticated = false;
 
     const lastPath = () => {
         return "/dashboard"
