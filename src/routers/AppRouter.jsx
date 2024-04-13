@@ -1,12 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PublicRouter from "./PublicRouter";
 import PrivateRouter from "./PrivateRouter";
-import DashboardPage from "../pages/DashboardPage";
-import LoginPage from "../pages/LoginPage";
+import DashboardPage from "../features/Dashboard/DashboardPage";
+import LoginPage from "../features/Auth/LoginPage";
 
 const AppRouter = () => {
-
-    const isAuthenticated = false;
 
     const lastPath = () => {
         return "/dashboard"
@@ -18,14 +16,14 @@ const AppRouter = () => {
 
                 {/* redirecto to /login route */}
                 <Route path="/login" element={
-                    <PublicRouter isAuthenticated={isAuthenticated} lastPath={lastPath()}>
+                    <PublicRouter lastPath={lastPath()}>
                         <LoginPage/>
                     </PublicRouter>
                 }/>
 
                 {/* redirect to all other routes */}
                 <Route path="/*" element={
-                    <PrivateRouter isAuthenticated={isAuthenticated}>
+                    <PrivateRouter>
                         <Routes>
                             <Route path="/dashboard" element={<DashboardPage/>}/>
                             <Route path="*" element={<Navigate to={"/dashboard"}/>}/>

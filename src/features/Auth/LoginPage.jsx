@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "../hooks/useForm";
-import { startLoginEmailPassword } from "../actions/auth";
+import { useDispatch } from "react-redux";
+import { useForm } from "../../hooks/useForm";
+import { startLoginEmailPassword } from "../../actions/auth";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.ui);
 
   const [formValues, handleInputChange] = useForm({
     email: "",
@@ -96,7 +95,7 @@ const LoginPage = () => {
                         </label>
                       </div>
                       <div className="text-sm leading-6">
-                        <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                        <a href="/" className="font-semibold text-indigo-600 hover:text-indigo-500">
                           Forgot password?
                         </a>
                       </div>

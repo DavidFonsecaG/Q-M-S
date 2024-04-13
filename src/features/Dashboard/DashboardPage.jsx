@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import Timer from '../features/Timer';
-import NameForm from '../features/NameForm';
+import Timer from './Timer';
+import NameForm from './NameForm';
+import NavbarTwo from './NavbarTwo';
 
 const DashboardPage = () => {
     const [names, setNames] = useState(['John']);
@@ -25,6 +26,7 @@ const DashboardPage = () => {
 
     return (
         <div>
+            <NavbarTwo/>
             <Timer rotateToNextName={rotateToNextName}/>
             <div>
                 <h2>{names[currentNameIndex]}'s Turn</h2>
