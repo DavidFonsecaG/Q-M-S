@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-const NameForm = ({ addName, removeName }) => {
+const NameForm = ({ addUser, removeUser }) => {
     const [isAvailable, setIsAvailable] = useState(false);
-    const userName = "David";
+    const user = {name:"Mateo", lastname:"Diaz"};
 
     useEffect(() => {
         // Automatically add or remove your name based on availability
         if (isAvailable) {
-            addName(userName); // Add your name if available
+            addUser(user); // Add your name if available
         } else {
-            removeName(userName); // Remove your name if not available
+            removeUser(user); // Remove your name if not available
         }
 
-    }, [isAvailable, addName, removeName]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [isAvailable, addUser, removeUser]); // eslint-disable-line react-hooks/exhaustive-deps
     const handleAvailabilityChange = useCallback((e) => {
         setIsAvailable(e.target.checked);
     }, []);

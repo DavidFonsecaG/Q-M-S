@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const Timer = ({ rotateToNextName }) => {
-    const [duration, setDuration] = useState(30 ); // 30 minutes in seconds.
+const Timer = ({ rotateToNextUser }) => {
+    const [duration, setDuration] = useState(3); // 30 minutes in seconds.
     const [timeLeft, setTimeLeft] = useState(duration);
     const [isRunning, setIsRunning] = useState(false);
     const [inputDuration, setInputDuration] = useState('');
@@ -18,11 +18,11 @@ const Timer = ({ rotateToNextName }) => {
 
     const resetTimer = useCallback(() => {
         // Rotate to the next name
-        rotateToNextName();
+        rotateToNextUser();
         // Reset the timer
         setTimeLeft(duration);
         setIsRunning(true); // Start the timer again
-    }, [duration, rotateToNextName]);
+    }, [duration, rotateToNextUser]);
 
     useEffect(() => {
         let intervalId;
@@ -61,21 +61,20 @@ const Timer = ({ rotateToNextName }) => {
 
     const minutes = `${(Math.floor(timeLeft / 60)).toString().padStart(2, '0')}`;
     let seconds = `${(timeLeft % 60).toString().padStart(2, '0')}`;
-    // const percentage = Math.round(100-((timeLeft / duration) * 100));
-    const percentage = 37;
+    const percentage = Math.round(100-((timeLeft / duration) * 100));
+    // const percentage = 37;
 
     return (
         <>
             <CircularProgressbarWithChildren 
                 value={percentage}
-                strokeWidth={0.5}
+                strokeWidth={1}
                 styles={buildStyles({
                     textColor: "#fff",
                     pathColor: "rgb(220 38 38)",
-                    trailColor: "rgb(156 163 175)",
-                    strokeLinecap: "butt"
+                    trailColor: "rgb(254 226 226)",
                 })}>
-                <h2 className="flex gap-6 justify-center text-6xl md:text-8xl text-center">
+                <h2 className="flex gap-6 justify-center text-6xl md:text-8xl xl:text-9xl text-center">
                     <div>   
                         <div>{minutes}</div>
                         <div className="text-sm font-normal pt-2">MINUTES</div>
@@ -86,7 +85,7 @@ const Timer = ({ rotateToNextName }) => {
                     </div>
                 </h2>
             </CircularProgressbarWithChildren>
-            {/* <div className="pt-9">
+            <div className="pt-9">
                 {isRunning ? (
                     <button
                         className="flex w-full justify-center rounded-md bg-red-600 px-3 py-4 text-4xl leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
@@ -106,7 +105,7 @@ const Timer = ({ rotateToNextName }) => {
                     onChange={(e) => setInputDuration(e.target.value)}
                 />
                 <button onClick={handleDurationChange}>Set Duration</button>
-            </div> */}
+            </div>
         </>
     );
 };
