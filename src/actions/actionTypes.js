@@ -7,4 +7,7 @@ export const types = {
 
     uiStartLoading: '[UI] Start loading',
     uiFinishLoading: '[UI] Finish loading',
+
+    addUser: '[Users] Add User',
+    removeUser: '[Users] Remove User',
 }

@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react';
 import Timer from './Timer';
-import NameForm from './NameForm';
 import Navbar from './Navbar';
 
 const DashboardPage = () => {
@@ -41,7 +40,7 @@ const DashboardPage = () => {
     return (
         <>
             <div className=" flex flex-col h-screen">
-                <Navbar/>
+                <Navbar users={users} addUser={addUser} removeUser={removeUser}/>
                 <main className="flex flex-col items-center justify-around h-full px-3 font-bold md:static">
                     <div className="w-[85vw] max-w-[580px]">
                         <Timer rotateToNextUser={rotateToNextUser}/>
@@ -53,22 +52,7 @@ const DashboardPage = () => {
                             <h2>{users[currentUserIndex].name} <br/> {users[currentUserIndex].lastname}</h2>
                         </div>
                     </div>
-
-                    <div>
-                        <NameForm addUser={addUser} removeUser={removeUser} />
-                    </div>
-                    <div>
-                        <h2>Queue of users</h2>
-                        <ul>
-                            {users.map((user, index) => (
-                                <li key={index}>
-                                    {user.name}{user.lastname}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
                 </main>
-
             </div>
         </>
     );

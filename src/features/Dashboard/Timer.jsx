@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { database } from '../../services/firebase';
 
 const Timer = ({ rotateToNextUser }) => {
     const [duration, setDuration] = useState(3); // 30 minutes in seconds.
     const [timeLeft, setTimeLeft] = useState(duration);
-    const [isRunning, setIsRunning] = useState(false);
-    const [inputDuration, setInputDuration] = useState('');
+    const [isRunning, setIsRunning] = useState(true);
+    // const [inputDuration, setInputDuration] = useState('');
 
-    const startTimer = useCallback(() => {
-        setIsRunning(true);
-    }, []);
+    // const startTimer = useCallback(() => {
+    //     setIsRunning(true);
+    // }, []);
 
-    const stopTimer = useCallback(() => {
-        setIsRunning(false);
-    }, []);
+    // const stopTimer = useCallback(() => {
+    //     setIsRunning(false);
+    // }, []);
 
     const resetTimer = useCallback(() => {
         // Rotate to the next name
@@ -26,6 +27,8 @@ const Timer = ({ rotateToNextUser }) => {
 
     useEffect(() => {
         let intervalId;
+        const timerRef = database.ref('timer');
+
 
         if (isRunning) {
             intervalId = setInterval(() => {
@@ -44,14 +47,14 @@ const Timer = ({ rotateToNextUser }) => {
         return () => clearInterval(intervalId);
     }, [isRunning, duration, resetTimer]);
 
-    const handleDurationChange = useCallback(() => {
-        const newDuration = parseInt(inputDuration, 10);
-        if (!isNaN(newDuration) && newDuration > 0) {
-            setDuration(newDuration * 60); // Convert minutes to seconds
-            setTimeLeft(newDuration * 60);
-            setIsRunning(false);
-        }
-    }, [inputDuration]);
+    // const handleDurationChange = useCallback(() => {
+    //     const newDuration = parseInt(inputDuration, 10);
+    //     if (!isNaN(newDuration) && newDuration > 0) {
+    //         setDuration(newDuration * 60); // Convert minutes to seconds
+    //         setTimeLeft(newDuration * 60);
+    //         setIsRunning(false);
+    //     }
+    // }, [inputDuration]);
 
     // const formatTime = (time) => {
     //     const minutes = Math.floor(time / 60);
@@ -85,7 +88,8 @@ const Timer = ({ rotateToNextUser }) => {
                     </div>
                 </h2>
             </CircularProgressbarWithChildren>
-            <div className="pt-9">
+            
+            {/* <div className="pt-9">
                 {isRunning ? (
                     <button
                         className="flex w-full justify-center rounded-md bg-red-600 px-3 py-4 text-4xl leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
@@ -105,7 +109,7 @@ const Timer = ({ rotateToNextUser }) => {
                     onChange={(e) => setInputDuration(e.target.value)}
                 />
                 <button onClick={handleDurationChange}>Set Duration</button>
-            </div>
+            </div> */}
         </>
     );
 };

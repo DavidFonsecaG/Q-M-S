@@ -2,6 +2,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
+import 'firebase/compat/database'; // Import database module from compat namespace
 
 // Web app's Firebase configuration
 const firebaseConfig = {
@@ -18,12 +19,14 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.firestore();
+const database = firebase.database(); // Access Realtime Database through compat namespace
 const storage = firebase.storage();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 export {
   auth,
   db,
+  database,
   storage,
   googleAuthProvider
 };
