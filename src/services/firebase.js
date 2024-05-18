@@ -17,11 +17,11 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
-const db = firebase.firestore();
-const database = firebase.database(); // Access Realtime Database through compat namespace
-const storage = firebase.storage();
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+const auth = firebase.auth(); //Auth
+const db = firebase.firestore(); //Firestore
+const database = firebase.database(); //Realtime Database
+const storage = firebase.storage(); //Storage
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider(); //Google Auth
 
 export {
   auth,

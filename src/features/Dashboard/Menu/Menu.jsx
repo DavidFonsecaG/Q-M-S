@@ -1,4 +1,6 @@
 import NameForm from '../NameForm';
+import StartTimerButton from './StartTimerButton'
+import PauseResumeButton from './PauseResumeButton'
 
 const Menu = ({users, addUser, removeUser}) => {
 
@@ -7,6 +9,7 @@ const Menu = ({users, addUser, removeUser}) => {
             <div>
                 <NameForm addUser={addUser} removeUser={removeUser} />
             </div>
+
             <div>
                 <span>Queue of users</span>
                 <ul>
@@ -16,6 +19,11 @@ const Menu = ({users, addUser, removeUser}) => {
                         </li>
                     ))}
                 </ul>
+            </div>
+
+            <div>
+                <StartTimerButton/> <br/>
+                <PauseResumeButton/>
             </div>
         </>
     )
